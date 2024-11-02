@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails des Commandes</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #6200ea; color: #fff; text-align: center; padding: 1em 0; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; }
+        th { background-color: #6200ea; color: #fff; }
+        ul { padding: 0; list-style-type: none; }
+        li { padding: 5px 0; }
+        a { color: #6200ea; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        footer { background-color: #6200ea; color: #fff; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+    </style>
+</head>
+<body>
+<header><h1>Détails des Commandes</h1></header>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Montant Total</th>
+            <th>Produits Associés</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="commande : ${commandes}">
+            <td th:text="${commande.id}"></td>
+            <td th:text="${commande.date}"></td>
+            <td th:text="${commande.montantTotal} + ' MAD'"></td>
+            <td>
+                <ul>
+                    <li th:each="produit : ${commande.produitsAssocies}" th:text="${produit.nom}"></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin-top: 50px;">
+        <a th:href="@{/catalogue}">Retour au Catalogue</a>
+    </div>
+</div>
+<footer><p>&copy; 2024 My Application. All rights reserved.</p></footer>
+</body>
+</html>

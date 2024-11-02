@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Produit</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #6200ea; color: #fff; text-align: center; padding: 1em 0; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        label, h2 { color: #333; margin-top: 10px; font-weight: bold; display: block; }
+        input { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px; }
+        button { background-color: #6200ea; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold; }
+        footer { background-color: #6200ea; color: #fff; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+    </style>
+</head>
+<body>
+<header><h1>Ajouter un Produit</h1></header>
+<div class="container">
+    <form th:action="@{/ajouterProduit}" th:object="${produitAlimentaire}" method="post">
+        <label for="nom">Nom:</label><input type="text" id="nom" th:field="*{nom}" required />
+        <label for="prix">Prix:</label><input type="number" id="prix" th:field="*{prix}" required />
+        <label for="stock">Stock:</label><input type="number" id="stock" th:field="*{stock}" required />
+        <button type="submit">Ajouter</button>
+    </form>
+    <h2>Supprimer un Produit</h2>
+    <form th:action="@{/supprimerProduit}" method="post">
+        <label for="produitId">ID du Produit à Supprimer:</label><input type="number" id="produitId" name="produitId" required />
+        <button type="submit" class="button">Supprimer</button>
+    </form>
+</div>
+<footer><p>&copy; 2024 My Application. All rights reserved.</p></footer>
+</body>
+</html>

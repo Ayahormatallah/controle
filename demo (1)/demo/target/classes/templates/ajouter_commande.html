@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter une Commande</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #6200ea; color: #fff; text-align: center; padding: 1em 0; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+        .form-check { display: flex; align-items: center; margin-top: 10px; }
+        button { background-color: #6200ea; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        footer { background-color: #6200ea; color: #fff; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+    </style>
+</head>
+<body>
+<header><h2>Ajouter une Commande</h2></header>
+<div class="container">
+    <form th:action="@{/ajouterCommande}" method="post">
+        <label for="dateCommande">Date de la commande</label>
+        <input type="date" id="dateCommande" name="date" required>
+        <h4>Sélectionnez les produits :</h4>
+        <div th:each="produit : ${produits}">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" th:id="'produit' + ${produit.id}" th:name="'produitsAssocies'" th:value="${produit.id}">
+                <label th:for="'produit' + ${produit.id}">
+                    <strong th:text="${produit.nom}">Nom Produit</strong> - <span th:text="${produit.prix} + ' MAD '">Prix</span>
+                </label>
+                <input type="number" th:name="'quantites[' + produit.id + ']'" min="1" value="1" placeholder="Quantité" style="width: 80px; margin-left: 10px;">
+            </div>
+        </div>
+        <button type="submit">Confirmer la Commande</button>
+    </form>
+</div>
+<footer><p>&copy; 2024 My Application. All rights reserved.</p></footer>
+</body>
+</html>

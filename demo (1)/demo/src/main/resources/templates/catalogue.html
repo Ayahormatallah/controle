@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Catalogue</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #6200ea; color: #fff; text-align: center; padding: 1em 0; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; }
+        th { background-color: #6200ea; color: #fff; }
+        a.button { background-color: #6200ea; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; display: inline-block; }
+        footer { background-color: #6200ea; color: #fff; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Catalogue des Produits</h1>
+</header>
+<div class="container">
+    <a th:href="@{/ajouterCommande}" class="button">Ajouter une commande</a>
+    <table>
+        <thead>
+        <tr><th>Nom</th><th>Prix</th><th>Stock</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="produit : ${produits}">
+            <td th:text="${produit.nom}"></td>
+            <td th:text="${produit.prix} + ' MAD'"></td>
+            <td th:text="${produit.stock}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer><p>&copy; 2024 My Application. All rights reserved.</p></footer>
+</body>
+</html>
